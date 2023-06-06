@@ -37,7 +37,7 @@ const HeaderLayout = () => {
   );
 
   return (
-    <div className="shadow-sm bg-base-100">
+    <div className="shadow-sm bg-base-100 z-40">
       <div className="navbar w-11/12 mx-auto">
         <div className="navbar-start font-Raleway">
           <div className="dropdown">
@@ -59,7 +59,7 @@ const HeaderLayout = () => {
             </label>
             <ul
               tabIndex={0}
-              className="menu-sm dropdown-content mt-3 p-2 shadow bg-base-100 rounded-box w-52"
+              className="menu-sm dropdown-content mt-3 p-2 shadow bg-base-100 rounded-box w-52 z-40 bg-opacity-70"
             >
               {navmenu}
             </ul>
