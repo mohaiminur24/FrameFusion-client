@@ -37,7 +37,7 @@ const HeaderLayout = () => {
   );
 
   return (
-    <div className="shadow-sm">
+    <div className="shadow-sm bg-base-100">
       <div className="navbar w-11/12 mx-auto">
         <div className="navbar-start font-Raleway">
           <div className="dropdown">
