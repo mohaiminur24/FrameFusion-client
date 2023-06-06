@@ -2,6 +2,7 @@ import React, { useContext } from "react";
 import { NavLink } from "react-router-dom";
 import { AuthContext } from "../AuthLayout/AuthancationContext";
 import DaynamicTitle from "./DaynamicTitle";
+import PrimaryButton from "./PrimaryButton";
 
 const HeaderLayout = () => {
   const { user } = useContext(AuthContext);
@@ -28,10 +29,8 @@ const HeaderLayout = () => {
           <button>Dashboard</button>
         </NavLink>
       </li>
-      <li>
-        <NavLink to="/profile" className={({isActive})=> isActive && 'text-primary'}>
-          <button>Profile</button>
-        </NavLink>
+      <li className="ml-10">
+        <PrimaryButton text="Login" direction="/loginPage" />
       </li>
     </>
   );
@@ -67,7 +66,7 @@ const HeaderLayout = () => {
           <h1 className="font-Inter font-bold">Frame<span className="text-primary">Fusion</span></h1>
         </div>
         <div className="navbar-center hidden lg:flex">
-          <ul className="menu-horizontal px-1 flex justify-center items-center gap-5 font-semibold text-sm">
+          <ul className="menu-horizontal flex justify-center items-center gap-5 font-semibold text-sm">
             {navmenu}
           </ul>
         </div>

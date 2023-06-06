@@ -4,10 +4,12 @@ import SliderLayout from "./Layout/SliderLayout";
 import { Container } from "postcss";
 import PopularClass from "./Layout/PopularClass";
 import PopularInstructors from "./Layout/PopularInstructors";
+import DaynamicTitle from "../../reusedComponents/DaynamicTitle";
 
 const HomePage = () => {
   return (
     <div>
+      <DaynamicTitle>Home</DaynamicTitle>
       {/* Slider section from here */}
       <ContainerLayout>
         <SliderLayout />
