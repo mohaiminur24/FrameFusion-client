@@ -15,6 +15,7 @@ import {
 } from "react-icons/Hi";
 import { useForm } from "react-hook-form";
 import { NavLink } from "react-router-dom";
+import SocialLogin from "../../reusedComponents/SocialLogin";
 
 const Registration = () => {
   const [vissiblePass, setVissiblePass] = useState(false);
@@ -201,7 +202,7 @@ const Registration = () => {
               </p>
             )}
 
-            <div className="mt-5 font-Inter">
+            <div className="mt-5 font-Inter text-sm">
               <label className="block mb-1 font-bold" htmlFor="gender">
                 Gender
               </label>
@@ -249,6 +250,7 @@ const Registration = () => {
               </NavLink>
             </div>
           </form>
+          <SocialLogin/>
         </div>
       </div>
     </ContainerLayout>

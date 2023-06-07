@@ -11,6 +11,7 @@ import {
 } from "react-icons/Hi";
 import { useForm } from "react-hook-form";
 import { NavLink } from "react-router-dom";
+import SocialLogin from "../../reusedComponents/SocialLogin";
 
 const LoginPage = () => {
   const [vissiblePass, setVissiblePass] = useState(false);
@@ -96,6 +97,7 @@ const LoginPage = () => {
             />
             <div className="text-xs mt-5 font-Inter">I don't have an Account ? <NavLink to="/registration"><button className="text-primary hover:text-primaryHover">Create an account</button></NavLink></div>
           </form>
+          <SocialLogin/>
         </div>
       </div>
     </ContainerLayout>
