@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useContext, useState } from "react";
 import ContainerLayout from "../../reusedComponents/ContainerLayout";
 import DaynamicTitle from "../../reusedComponents/DaynamicTitle";
 import Lottie from "react-lottie";
@@ -16,9 +16,18 @@ import {
 import { useForm } from "react-hook-form";
 import { NavLink } from "react-router-dom";
 import SocialLogin from "../../reusedComponents/SocialLogin";
+import { AuthContext } from "../../AuthLayout/AuthancationContext";
+import Swal from "sweetalert2";
+import { updateProfile } from "firebase/auth";
+
+
 
 const Registration = () => {
   const [vissiblePass, setVissiblePass] = useState(false);
+  const {CreateNewUser} = useContext(AuthContext);
+  const [disabledButton, setDisabledButton] = useState(false);
+  const [errorPass, setErrorPass] = useState(false);
+
   const {
     register,
     handleSubmit,
@@ -38,6 +47,24 @@ const Registration = () => {
   // form handle function is here
   const handleRegistrationForm = (data) => {
     console.log(data)
+    if(data.password !== data.confrimpassword){
+      Swal.fire(
+        'Password Issue',
+        'Your Password Not Matching with Confrim Password!',
+        'question'
+      )
+      return;
+    }
+    CreateNewUser(data.email, data.password).then(res=>{
+      const user = res.user;
+       updateProfile(user,{
+        displayName: data.name,
+        photoURL: data.photo
+       }).then(res=>{
+        const newUser = {...data, role: "student"}
+       })
+    })
+    
   };
 
 
@@ -152,10 +179,10 @@ const Registration = () => {
             )}
 
             <div className="border-b flex items-center gap-5 mt-5">
-              <HiLockClosed />
+              <HiLockClosed className={errorPass && "text-red-500"} />
               <input
                 {...register("confrimpassword", { required: true })}
-                className="w-full text-sm outline-none px-3 py-1"
+                className={`w-full text-sm outline-none px-3 py-1 ${errorPass && "text-red-500"}`}
                 placeholder="Confrim Password"
                 type={vissiblePass ? "text" : "password"}
                 name="confrimpassword"
