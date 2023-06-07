@@ -20,11 +20,9 @@ import { AuthContext } from "../../AuthLayout/AuthancationContext";
 import Swal from "sweetalert2";
 import { updateProfile } from "firebase/auth";
 
-
-
 const Registration = () => {
   const [vissiblePass, setVissiblePass] = useState(false);
-  const {CreateNewUser} = useContext(AuthContext);
+  const { CreateNewUser } = useContext(AuthContext);
   const [disabledButton, setDisabledButton] = useState(false);
   const [errorPass, setErrorPass] = useState(false);
 
@@ -46,28 +44,50 @@ const Registration = () => {
 
   // form handle function is here
   const handleRegistrationForm = (data) => {
-    console.log(data)
-    if(data.password !== data.confrimpassword){
+    console.log(data);
+    if (data.password !== data.confrimpassword) {
       Swal.fire(
-        'Password Issue',
-        'Your Password Not Matching with Confrim Password!',
-        'question'
-      )
+        "Password Issue",
+        "Your Password Not Matching with Confrim Password!",
+        "question"
+      );
+      setErrorPass(true);
       return;
+    } else {
+      setErrorPass(false);
     }
-    CreateNewUser(data.email, data.password).then(res=>{
+    setDisabledButton(true);
+    CreateNewUser(data.email, data.password).then((res) => {
       const user = res.user;
-       updateProfile(user,{
+      updateProfile(user, {
         displayName: data.name,
-        photoURL: data.photo
-       }).then(res=>{
-        const newUser = {...data, role: "student"}
-       })
-    })
-    
+        photoURL: data.photo,
+      }).then(() => {
+        const newUser = { name: data.name, email: data.email, photo: data.photo, phone: data.phone,address: data.address, gender: data.Gender, role: "student" };
+        fetch("http://localhost:5000/createnewuser", {
+          method: "POST",
+          headers: {
+            "content-type": "application/json",
+          },
+          body: JSON.stringify(newUser),
+        })
+          .then((res) => res.json())
+          .then((data) => {
+            if (data.insertedId) {
+              Swal.fire({
+                position: "center",
+                icon: "success",
+                title: "Account Create successfully!",
+                showConfirmButton: false,
+                timer: 1500,
+              });
+              reset();
+              setDisabledButton(false);
+            }
+          });
+      });
+    });
   };
-
-
 
   return (
     <ContainerLayout>
@@ -182,7 +202,9 @@ const Registration = () => {
               <HiLockClosed className={errorPass && "text-red-500"} />
               <input
                 {...register("confrimpassword", { required: true })}
-                className={`w-full text-sm outline-none px-3 py-1 ${errorPass && "text-red-500"}`}
+                className={`w-full text-sm outline-none px-3 py-1 ${
+                  errorPass && "text-red-500"
+                }`}
                 placeholder="Confrim Password"
                 type={vissiblePass ? "text" : "password"}
                 name="confrimpassword"
@@ -264,9 +286,10 @@ const Registration = () => {
             )}
 
             <input
-              className="px-8 font-Inter font-bold text-white outline-none rounded-sm shadow-md hover:bg-primaryHover disabled:opacity-50 py-2 bg-primary mt-8"
+              className="px-8 font-Inter font-bold text-white outline-none rounded-sm shadow-md hover:bg-primaryHover py-2 disabled:opacity-30 bg-primary mt-8"
               type="submit"
               value="Register"
+              disabled={disabledButton}
             />
             <div className="text-xs mt-5 font-Inter">
               Already i have an Account ?{" "}
@@ -277,7 +300,7 @@ const Registration = () => {
               </NavLink>
             </div>
           </form>
-          <SocialLogin/>
+          <SocialLogin />
         </div>
       </div>
     </ContainerLayout>
