@@ -1,11 +1,9 @@
 import React, { useContext } from "react";
 import { NavLink } from "react-router-dom";
-import { AuthContext } from "../AuthLayout/AuthancationContext";
-import DaynamicTitle from "./DaynamicTitle";
 import PrimaryButton from "./PrimaryButton";
 
 const HeaderLayout = () => {
-  const { user } = useContext(AuthContext);
+  
 
   const navmenu = (
     <>
