@@ -4,6 +4,7 @@ import {
   GoogleAuthProvider,
   createUserWithEmailAndPassword,
   getAuth,
+  signInWithPopup,
 } from "firebase/auth";
 
 export const AuthContext = createContext(null);
@@ -13,15 +14,21 @@ const GoogleProvider = new GoogleAuthProvider();
 const AuthancationContext = ({ children }) => {
   const [user, setUser] = useState("I am the boss");
 
-  // create new user function is here
+  // create new user Email and password function is here
   const CreateNewUser = (email, password) => {
     return createUserWithEmailAndPassword(auth, email, password);
   };
+
+  //create newuser by google login
+  const createuserbygoogle = ()=>{
+    return signInWithPopup(auth,GoogleProvider);
+  }
 
   // Context value is here
   const ContextValue = {
     user,
     CreateNewUser,
+    createuserbygoogle
   };
 
   return (
