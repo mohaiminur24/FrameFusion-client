@@ -7,6 +7,7 @@ import {
   onAuthStateChanged,
   signInWithEmailAndPassword,
   signInWithPopup,
+  signOut,
 } from "firebase/auth";
 
 export const AuthContext = createContext(null);
@@ -31,7 +32,13 @@ const AuthancationContext = ({ children }) => {
 
   // Login user function is here
   const handleLoginUser = (email, pass)=>{
+    setLoading(true);
     return signInWithEmailAndPassword(auth, email, pass);
+  };
+
+  //Logout function is here
+  const Logoutuser = ()=>{
+    return signOut(auth);
   }
 
   // Context value is here
@@ -40,7 +47,8 @@ const AuthancationContext = ({ children }) => {
     CreateNewUser,
     createuserbygoogle,
     loading,
-    handleLoginUser
+    handleLoginUser,
+    Logoutuser
     
   };
 

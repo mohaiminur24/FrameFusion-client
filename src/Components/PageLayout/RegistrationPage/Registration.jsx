@@ -25,6 +25,9 @@ const Registration = () => {
   const { CreateNewUser } = useContext(AuthContext);
   const [disabledButton, setDisabledButton] = useState(false);
   const [errorPass, setErrorPass] = useState(false);
+  const [errorMessage, setErrorMessage] = useState(null);
+
+  
 
   const {
     register,
@@ -44,7 +47,23 @@ const Registration = () => {
 
   // form handle function is here
   const handleRegistrationForm = (data) => {
-    console.log(data);
+
+    
+    setErrorMessage(null);
+    const isContainsUppercase = /^(?=.*[A-Z]).*$/;
+    const isContainsSymbol = /^(?=.*[~`!@#$%^&*()--+={}\[\]|\\:;"'<>,.?/_₹]).*$/;
+    if(data.password.length < 6){
+      setErrorMessage("Password must have more then 6 letter");
+      return;
+    }else if(!isContainsUppercase.test(data.password)){
+      setErrorMessage('Password must have a Capital letter');
+      return;
+    }else if((!isContainsSymbol.test(data.password))){
+      setErrorMessage('Password must have a special caracter');
+      return;
+    };
+
+
     if (data.password !== data.confrimpassword) {
       Swal.fire(
         "Password Issue",
@@ -285,14 +304,16 @@ const Registration = () => {
               </p>
             )}
 
+            <p className="mt-3 text-xs text-red-500">{errorMessage}</p>
+
             <input
-              className="px-8 font-Inter font-bold text-white outline-none rounded-sm shadow-md hover:bg-primaryHover py-2 disabled:opacity-30 bg-primary mt-8"
+              className="px-8 font-Inter font-bold text-white outline-none rounded-sm shadow-md hover:bg-primaryHover py-2 disabled:opacity-30 bg-primary mt-5"
               type="submit"
               value="Register"
               disabled={disabledButton}
             />
             <div className="text-xs mt-5 font-Inter">
-              Already i have an Account ?{" "}
+              Already i have an Account ?
               <NavLink to="/loginPage">
                 <button className="text-primary hover:text-primaryHover">
                   Login account

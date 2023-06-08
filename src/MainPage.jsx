@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useContext } from 'react';
 import HeaderLayout from './Components/reusedComponents/HeaderLayout';
 import { Outlet } from 'react-router-dom';
 import FooterLayout from './Components/reusedComponents/FooterLayout';
