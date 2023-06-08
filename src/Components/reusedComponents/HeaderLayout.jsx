@@ -43,7 +43,7 @@ const HeaderLayout = () => {
       </li>
       <li>
         <NavLink
-          to="/instructors"
+          to="/instractor"
           className={({ isActive }) => isActive && "text-primary"}
         >
           <button>Instructors</button>

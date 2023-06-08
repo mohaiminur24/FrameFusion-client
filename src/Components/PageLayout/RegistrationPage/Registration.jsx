@@ -14,7 +14,7 @@ import {
   HiUserCircle,
 } from "react-icons/Hi";
 import { useForm } from "react-hook-form";
-import { NavLink } from "react-router-dom";
+import { NavLink, useNavigate } from "react-router-dom";
 import SocialLogin from "../../reusedComponents/SocialLogin";
 import { AuthContext } from "../../AuthLayout/AuthancationContext";
 import Swal from "sweetalert2";
@@ -26,6 +26,7 @@ const Registration = () => {
   const [disabledButton, setDisabledButton] = useState(false);
   const [errorPass, setErrorPass] = useState(false);
   const [errorMessage, setErrorMessage] = useState(null);
+  const Navigate = useNavigate();
 
   
 
@@ -102,6 +103,7 @@ const Registration = () => {
               });
               reset();
               setDisabledButton(false);
+              Navigate("/");
             }
           });
       });
