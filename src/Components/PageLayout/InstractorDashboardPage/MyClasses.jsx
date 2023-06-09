@@ -2,13 +2,10 @@ import React from "react";
 import ContainerLayout from "../../reusedComponents/ContainerLayout";
 import PrimaryButton from "../../reusedComponents/PrimaryButton";
 import SecondaryButton from "../../reusedComponents/SecondaryButton";
-import { useContext } from "react";
-import { AuthContext } from "../../AuthLayout/AuthancationContext";
 import LoadInstractorClass from "../../CustomHook/LoadInstractorClass";
 
 const MyClasses = () => {
   const [refetch, classes] = LoadInstractorClass();
-
   const handleDeleteClass = (id) =>{
       console.log(id);
   }
