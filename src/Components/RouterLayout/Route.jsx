@@ -4,7 +4,8 @@ import HomePage from "../PageLayout/HomePage/HomePage";
 import LoginPage from "../PageLayout/LoginPage/LoginPage";
 import Registration from "../PageLayout/RegistrationPage/Registration";
 import InstractorPage from "../PageLayout/instractorPage/instractorPage";
-import InstractorDashboard from "../PageLayout/InstractorDashboardPage/InstractorDashboard";
+import Dashboard from "../PageLayout/DashboardPage/Dashboard";
+import MyClasses from "../PageLayout/InstractorDashboardPage/MyClasses";
 import AddNewClass from "../PageLayout/InstractorDashboardPage/AddNewClass";
 
 const route = createBrowserRouter([
@@ -28,16 +29,24 @@ const route = createBrowserRouter([
                 path:'/instractor',
                 element: <InstractorPage/>
             },
+            
+        ]
+    },
+    {
+        path : "/Dashboard",
+        element: <Dashboard/>,
+        children:[
+            // instractor route is here
             {
-                path : "/instractorDashboard",
-                element: <InstractorDashboard/>
+                path: "instractorclasses",
+                element: <MyClasses/>
             },
             {
-                path: "/addnewclass",
+                path: "addnewclass",
                 element: <AddNewClass/>
             }
         ]
-    }
+    },
 ]);
 
 
