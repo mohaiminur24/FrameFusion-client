@@ -3,12 +3,31 @@ import ContainerLayout from "../../reusedComponents/ContainerLayout";
 import PrimaryButton from "../../reusedComponents/PrimaryButton";
 import SecondaryButton from "../../reusedComponents/SecondaryButton";
 import LoadInstractorClass from "../../CustomHook/LoadInstractorClass";
+import AxiosFetch from "../../CustomHook/AxiosFetch";
+import Swal from "sweetalert2";
 
 const MyClasses = () => {
   const [refetch, classes] = LoadInstractorClass();
-  const handleDeleteClass = (id) =>{
-      console.log(id);
-  }
+  const axiosSecure = AxiosFetch();
+  const handleDeleteClass = async (id) => {
+    Swal.fire({
+      title: "Are you sure?",
+      text: "You won't be able to revert this!",
+      icon: "warning",
+      showCancelButton: true,
+      confirmButtonColor: "#3085d6",
+      cancelButtonColor: "#d33",
+      confirmButtonText: "Yes, delete it!",
+    }).then(async(result) => {
+      if (result.isConfirmed) {
+        const result =await axiosSecure.delete(`/deleteclass?id=${id}`);
+        refetch();
+        if (result.data.deletedCount) {
+          Swal.fire("Deleted!", "Your file has been deleted.", "success");
+        }
+      }
+    });
+  };
 
   return (
     <ContainerLayout>
@@ -31,8 +50,8 @@ const MyClasses = () => {
                 classes.map((cls, index) => {
                   return (
                     <>
-                      <tr key={index}>
-                        <td>{index+1}</td>
+                      <tr key={cls._id}>
+                        <td>{index + 1}</td>
                         <td>
                           <div className="flex items-center space-x-3">
                             <div className="avatar">
@@ -44,22 +63,39 @@ const MyClasses = () => {
                         </td>
                         <td>
                           <h1 className="font-bold">{cls?.ClassName}</h1>
-                          <h2 className="text-xs opacity-50">Email : <span>{cls.instractorEmail}</span></h2>
+                          <h2 className="text-xs opacity-50">
+                            Email : <span>{cls.instractorEmail}</span>
+                          </h2>
                         </td>
                         <td className="font-inter text-xs">
-                          <h1 className="font-semibold">Total Students: <span className="font-normal">{cls?.TotalStudent}</span></h1>
-                          <h1 className="font-semibold">Aviable Seats: <span className="font-normal">{cls?.aviableseats}</span></h1>
-                          <h1 className="font-semibold">Price: <span className="font-normal">${cls?.price}</span></h1>
-                          
+                          <h1 className="font-semibold">
+                            Total Students:{" "}
+                            <span className="font-normal">
+                              {cls?.TotalStudent}
+                            </span>
+                          </h1>
+                          <h1 className="font-semibold">
+                            Aviable Seats:{" "}
+                            <span className="font-normal">
+                              {cls?.aviableseats}
+                            </span>
+                          </h1>
+                          <h1 className="font-semibold">
+                            Price:{" "}
+                            <span className="font-normal">${cls?.price}</span>
+                          </h1>
                         </td>
                         <td>
                           <h1 className="text-sm">{cls?.status}</h1>
-                          {cls?.Feedback && <button className="text-red-500">Feedback</button>}
-                          
+                          {cls?.Feedback && (
+                            <button className="text-red-500">Feedback</button>
+                          )}
                         </td>
                         <td className="flex justify-start items-center gap-5">
                           <PrimaryButton text="Edit" />
-                          <button onClick={()=>handleDeleteClass(cls._id)}><SecondaryButton text="Delete" /></button>
+                          <button onClick={() => handleDeleteClass(cls._id)}>
+                            <SecondaryButton text="Delete" />
+                          </button>
                         </td>
                       </tr>
                     </>
