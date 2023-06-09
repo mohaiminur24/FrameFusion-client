@@ -3,6 +3,7 @@ import { useForm } from "react-hook-form";
 import { useLoaderData, useNavigate, useParams } from "react-router-dom";
 import AxiosFetch from "../../CustomHook/AxiosFetch";
 import Swal from "sweetalert2";
+import DaynamicTitle from "../../reusedComponents/DaynamicTitle";
 
 const UpdateClass = () => {
   const {id} = useParams();
@@ -49,6 +50,7 @@ const handleupdateclass = async(data) =>{
 
   return (
     <div className="w-6/12 mx-auto">
+        <DaynamicTitle>Update Class</DaynamicTitle>
       <form onSubmit={handleSubmit(handleupdateclass)} className="w-full mt-5">
         <h1 className="text-2xl font-bold font-Inter mb-5">Updated Class</h1>
         <div className="w-full">

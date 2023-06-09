@@ -4,9 +4,11 @@ import PrimaryButton from "./PrimaryButton";
 import { AuthContext } from "../AuthLayout/AuthancationContext";
 import SecondaryButton from "./SecondaryButton";
 import Swal from "sweetalert2";
+import UserRole from "../CustomHook/UserRole";
 
 const HeaderLayout = () => {
   const { user, Logoutuser } = useContext(AuthContext);
+  const [userpower] = UserRole();
 
   //handlelogout function is here
   const handleLogoutuser = () => {

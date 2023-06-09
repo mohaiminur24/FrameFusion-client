@@ -3,6 +3,7 @@ import ContainerLayout from "../../reusedComponents/ContainerLayout";
 import { useForm } from "react-hook-form";
 import { AuthContext } from "../../AuthLayout/AuthancationContext";
 import Swal from "sweetalert2";
+import DaynamicTitle from "../../reusedComponents/DaynamicTitle";
 
 const AddNewClass = () => {
   const { user } = useContext(AuthContext);
@@ -39,6 +40,7 @@ const AddNewClass = () => {
 
   return (
     <ContainerLayout>
+      <DaynamicTitle>Add Class</DaynamicTitle>
       <div >
         <div className="p-10">
           <h1 className="text-2xl font-bold font-Inter">Create New Class</h1>

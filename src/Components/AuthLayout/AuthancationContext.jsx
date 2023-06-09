@@ -52,6 +52,7 @@ const AuthancationContext = ({ children }) => {
     
   };
 
+
   //Active user Function is here
   useEffect(()=>{
     const unsuscribe = onAuthStateChanged(auth, currentUser =>{

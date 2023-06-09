@@ -8,6 +8,7 @@ import Dashboard from "../PageLayout/DashboardPage/Dashboard";
 import MyClasses from "../PageLayout/InstractorDashboardPage/MyClasses";
 import AddNewClass from "../PageLayout/InstractorDashboardPage/AddNewClass";
 import UpdateClass from "../PageLayout/InstractorDashboardPage/UpdateClass";
+import InstractorPrivateRoute from "../AuthLayout/InstractorPrivateRoute";
 
 const route = createBrowserRouter([
     {
@@ -40,15 +41,15 @@ const route = createBrowserRouter([
             // instractor route is here
             {
                 path: "instractorclasses",
-                element: <MyClasses/>
+                element: <InstractorPrivateRoute><MyClasses/></InstractorPrivateRoute>
             },
             {
                 path: "addnewclass",
-                element: <AddNewClass/>
+                element: <InstractorPrivateRoute><AddNewClass/></InstractorPrivateRoute>
             },
             {
                 path: "updateclass/:id",
-                element: <UpdateClass/>,
+                element: <InstractorPrivateRoute><UpdateClass/></InstractorPrivateRoute>,
             }
         ]
     },

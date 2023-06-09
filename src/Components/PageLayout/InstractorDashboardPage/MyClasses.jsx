@@ -5,6 +5,7 @@ import SecondaryButton from "../../reusedComponents/SecondaryButton";
 import LoadInstractorClass from "../../CustomHook/LoadInstractorClass";
 import AxiosFetch from "../../CustomHook/AxiosFetch";
 import Swal from "sweetalert2";
+import DaynamicTitle from "../../reusedComponents/DaynamicTitle";
 
 const MyClasses = () => {
   const [refetch, classes] = LoadInstractorClass();
@@ -31,6 +32,7 @@ const MyClasses = () => {
 
   return (
     <ContainerLayout>
+      <DaynamicTitle>Class</DaynamicTitle>
       <div className="mt-5">
         <div className="overflow-x-auto">
           <table className="table font-Raleway">
