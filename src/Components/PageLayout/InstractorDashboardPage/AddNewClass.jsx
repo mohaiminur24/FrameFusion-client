@@ -14,7 +14,7 @@ const AddNewClass = () => {
   } = useForm();
 
   const CreateNewClass = (data) => {
-    const newClass = { ...data, status: "pending" };
+    const newClass = { ...data, status: "Pending", TotalStudent:0, Feedback: '' };
     fetch("http://localhost:5000/createnewclass", {
       method: "POST",
       headers: {
