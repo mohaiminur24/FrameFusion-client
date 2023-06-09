@@ -92,7 +92,7 @@ const MyClasses = () => {
                           )}
                         </td>
                         <td className="flex justify-start items-center gap-5">
-                          <PrimaryButton text="Edit" />
+                          <PrimaryButton text="Edit" direction={`../updateclass/${cls._id}`} />
                           <button onClick={() => handleDeleteClass(cls._id)}>
                             <SecondaryButton text="Delete" />
                           </button>

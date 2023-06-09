@@ -7,6 +7,7 @@ import InstractorPage from "../PageLayout/instractorPage/instractorPage";
 import Dashboard from "../PageLayout/DashboardPage/Dashboard";
 import MyClasses from "../PageLayout/InstractorDashboardPage/MyClasses";
 import AddNewClass from "../PageLayout/InstractorDashboardPage/AddNewClass";
+import UpdateClass from "../PageLayout/InstractorDashboardPage/UpdateClass";
 
 const route = createBrowserRouter([
     {
@@ -44,6 +45,10 @@ const route = createBrowserRouter([
             {
                 path: "addnewclass",
                 element: <AddNewClass/>
+            },
+            {
+                path: "updateclass/:id",
+                element: <UpdateClass/>,
             }
         ]
     },
