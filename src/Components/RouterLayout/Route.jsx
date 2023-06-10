@@ -11,6 +11,7 @@ import UpdateClass from "../PageLayout/InstractorDashboardPage/UpdateClass";
 import InstractorPrivateRoute from "../AuthLayout/InstractorPrivateRoute";
 import ManageClasses from "../PageLayout/AdminDashboard/ManageClasses";
 import ManageUsers from "../PageLayout/AdminDashboard/ManageUsers";
+import AdminPrivateRoute from "../AuthLayout/AdminPrivateRoute";
 
 const route = createBrowserRouter([
     {
@@ -56,11 +57,11 @@ const route = createBrowserRouter([
             // Admin all route is here
             {
                 path:"manageclasses",
-                element: <ManageClasses/>
+                element: <AdminPrivateRoute><ManageClasses/></AdminPrivateRoute>
             },
             {
                 path: "manageusers",
-                element: <ManageUsers/>
+                element: <AdminPrivateRoute><ManageUsers/></AdminPrivateRoute>
             }
         ]
     },

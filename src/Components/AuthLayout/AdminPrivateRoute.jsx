@@ -1,17 +1,17 @@
 import UserRole from '../CustomHook/UserRole';
 import { useNavigate } from 'react-router-dom';
 
-const InstractorPrivateRoute = ({children}) => {
+const AdminPrivateRoute = ({children}) => {
     const [userpower] = UserRole();
     const navigate = useNavigate();
     if(!userpower){
         return;
     };
-    if(userpower === 'instractor'){
+    if(userpower === 'admin'){
         return children;
     }else{
         navigate('/')
     }
 };
 
-export default InstractorPrivateRoute;
+export default AdminPrivateRoute;
