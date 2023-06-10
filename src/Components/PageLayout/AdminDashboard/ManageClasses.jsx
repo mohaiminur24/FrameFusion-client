@@ -75,6 +75,7 @@ const ManageClasses = () => {
       `/setfeedbackadmin?Feedback=${data.Feedback}&id=${modaldata._id}`
     );
     if (result.data.modifiedCount) {
+      // window.my_modal_1.closeModal();
       Swal.fire({
         position: "center",
         icon: "success",
@@ -153,9 +154,9 @@ const ManageClasses = () => {
                             </h1>
                           </td>
                           <td>
-                            <h1 className="text-sm">{cls?.status}</h1>
+                            <h1 className="text-sm font-bold">{cls?.status}</h1>
                             {cls?.Feedback && (
-                              <button className="text-red-500">Feedback</button>
+                              <span className="text-primary text-xs font-Raleway">Feedback</span>
                             )}
                           </td>
                           <td className="flex justify-start items-center gap-2">
@@ -186,7 +187,7 @@ const ManageClasses = () => {
 
       {/* Feedback Modal from here */}
       <dialog id="my_modal_1" className="modal">
-        <form method="dialog" className="modal-box">
+        <form method="dialog" className="modal-box z-0">
           <h3 className="font-bold text-lg">Give Feedback</h3>
           <h1 className="text-sm font-Raleway">{modaldata?.ClassName}</h1>
           <form onClick={handleSubmit(handlegivefeedback)}>
