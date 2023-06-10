@@ -25,21 +25,21 @@ const AuthancationContext = ({ children }) => {
   };
 
   //create newuser by google login
-  const createuserbygoogle = ()=>{
+  const createuserbygoogle = () => {
     setLoading(true);
-    return signInWithPopup(auth,GoogleProvider);
+    return signInWithPopup(auth, GoogleProvider);
   };
 
   // Login user function is here
-  const handleLoginUser = (email, pass)=>{
+  const handleLoginUser = (email, pass) => {
     setLoading(true);
     return signInWithEmailAndPassword(auth, email, pass);
   };
 
   //Logout function is here
-  const Logoutuser = ()=>{
+  const Logoutuser = () => {
     return signOut(auth);
-  }
+  };
 
   // Context value is here
   const ContextValue = {
@@ -48,22 +48,33 @@ const AuthancationContext = ({ children }) => {
     createuserbygoogle,
     loading,
     handleLoginUser,
-    Logoutuser
-    
+    Logoutuser,
   };
 
-
   //Active user Function is here
-  useEffect(()=>{
-    const unsuscribe = onAuthStateChanged(auth, currentUser =>{
+  useEffect(() => {
+    const unsuscribe = onAuthStateChanged(auth, (currentUser) => {
       setUser(currentUser);
-      setLoading(false);
+      if (currentUser) {
+        fetch("http://localhost:5000/jwt", {
+          method: "POST",
+          headers: {
+            "content-type": "application/json",
+          },
+          body: JSON.stringify(currentUser),
+        }).then((res) => res.json()).then(data=> {
+          localStorage.setItem('access-token',data.token)
+        })
+        setLoading(false);
+      }else{
+        localStorage.removeItem('access-token');
+      }
     });
 
-    return ()=>{
+    return () => {
       return unsuscribe;
-    }
-  },[])
+    };
+  }, []);
 
   return (
     <AuthContext.Provider value={ContextValue}>{children}</AuthContext.Provider>

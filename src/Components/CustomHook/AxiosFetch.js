@@ -3,7 +3,6 @@ import { AuthContext } from "../AuthLayout/AuthancationContext";
 import { useNavigate } from "react-router-dom";
 import axios from "axios";
 import { useEffect } from "react";
-import { config } from "daisyui";
 
 
 const AxiosFetch = () => {

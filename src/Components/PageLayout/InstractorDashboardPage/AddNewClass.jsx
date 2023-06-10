@@ -4,9 +4,11 @@ import { useForm } from "react-hook-form";
 import { AuthContext } from "../../AuthLayout/AuthancationContext";
 import Swal from "sweetalert2";
 import DaynamicTitle from "../../reusedComponents/DaynamicTitle";
+import AxiosFetch from "../../CustomHook/AxiosFetch";
 
 const AddNewClass = () => {
   const { user } = useContext(AuthContext);
+  const axiosSecure = AxiosFetch();
   const {
     register,
     handleSubmit,
@@ -14,34 +16,31 @@ const AddNewClass = () => {
     reset,
   } = useForm();
 
-  const CreateNewClass = (data) => {
-    const newClass = { ...data, status: "Pending", TotalStudent:0, Feedback: '',enrollstudent: [] };
-    fetch("http://localhost:5000/createnewclass", {
-      method: "POST",
-      headers: {
-        "content-type": "application/json",
-      },
-      body: JSON.stringify(newClass),
-    })
-      .then((res) => res.json())
-      .then((data) => {
-        if(data.insertedId){
-            Swal.fire({
-                position: 'center',
-                icon: 'success',
-                title: 'Create new class successfully!',
-                showConfirmButton: false,
-                timer: 1500
-              });
-              reset();
-        }
+  const CreateNewClass = async (data) => {
+    const newClass = {
+      ...data,
+      status: "Pending",
+      TotalStudent: 0,
+      Feedback: "",
+      enrollstudent: [],
+    };
+    const result = await axiosSecure.post("/createnewclass", newClass);
+    if (result.data.insertedId) {
+      Swal.fire({
+        position: "center",
+        icon: "success",
+        title: "Create new class successfully!",
+        showConfirmButton: false,
+        timer: 1500,
       });
+      reset();
+    };
   };
 
   return (
     <ContainerLayout>
       <DaynamicTitle>Add Class</DaynamicTitle>
-      <div >
+      <div>
         <div className="p-10">
           <h1 className="text-2xl font-bold font-Inter">Create New Class</h1>
           <form onSubmit={handleSubmit(CreateNewClass)} className="mt-5">

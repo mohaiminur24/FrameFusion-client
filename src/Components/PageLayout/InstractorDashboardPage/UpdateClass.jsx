@@ -26,7 +26,6 @@ useEffect(()=>{
 
 const handleupdateclass = async(data) =>{
     const result = await axiosSecure.post(`/updateclassbyinstractor?id=${id}`,{data});
-    console.log(result.data.matchedCount)
     if(result.data.modifiedCount){
         Swal.fire({
             position: 'center',
