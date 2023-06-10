@@ -9,6 +9,7 @@ import MyClasses from "../PageLayout/InstractorDashboardPage/MyClasses";
 import AddNewClass from "../PageLayout/InstractorDashboardPage/AddNewClass";
 import UpdateClass from "../PageLayout/InstractorDashboardPage/UpdateClass";
 import InstractorPrivateRoute from "../AuthLayout/InstractorPrivateRoute";
+import ManageClasses from "../PageLayout/AdminDashboard/ManageClasses";
 
 const route = createBrowserRouter([
     {
@@ -50,6 +51,15 @@ const route = createBrowserRouter([
             {
                 path: "updateclass/:id",
                 element: <InstractorPrivateRoute><UpdateClass/></InstractorPrivateRoute>,
+            },
+            // Admin all route is here
+            {
+                path:"manageclasses",
+                element: <ManageClasses/>
+            },
+            {
+                path: "manageusers",
+                element: <h1>this is manage users</h1>
             }
         ]
     },
