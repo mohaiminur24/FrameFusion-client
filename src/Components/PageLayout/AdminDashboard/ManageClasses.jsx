@@ -1,22 +1,27 @@
 import React, { useState } from "react";
 import LoadAllClasses from "../../CustomHook/LoadAllClasses";
-import PrimaryButton from "../../reusedComponents/PrimaryButton";
-import SecondaryButton from "../../reusedComponents/SecondaryButton";
+import { useForm } from "react-hook-form";
 import ContainerLayout from "../../reusedComponents/ContainerLayout";
 import Swal from "sweetalert2";
 import AxiosFetch from "../../CustomHook/AxiosFetch";
+import { ImCross } from "react-icons/im";
 
 const ManageClasses = () => {
   const [refetch, classes] = LoadAllClasses();
   const [modaldata, setModalData] = useState(null);
+  const {
+    reset,
+    register,
+    handleSubmit,
+    formState: { errors },
+  } = useForm();
   const axiosSecure = AxiosFetch();
   const findmodaldata = (id) => {
     const data = classes.find((items) => items._id == id);
     setModalData(data);
   };
 
-  console.log(modaldata);
-
+  // handle class denied fuction is here
   const handleclassstatusdenie = (id) => {
     Swal.fire({
       title: "Are you sure?",
@@ -39,6 +44,8 @@ const ManageClasses = () => {
       }
     });
   };
+
+  // handle class approve functin is here
   const handleclassstatusapprove = (id) => {
     Swal.fire({
       title: "Are you sure?",
@@ -60,6 +67,24 @@ const ManageClasses = () => {
         }
       }
     });
+  };
+
+  // handle give feedback funtion is here
+  const handlegivefeedback = async (data) => {
+    const result = await axiosSecure.post(
+      `/setfeedbackadmin?Feedback=${data.Feedback}&id=${modaldata._id}`
+    );
+    if (result.data.modifiedCount) {
+      Swal.fire({
+        position: "center",
+        icon: "success",
+        title: "Feedback has been saved",
+        showConfirmButton: false,
+        timer: 1500,
+      });
+      reset();
+      refetch();
+    }
   };
 
   return (
@@ -129,6 +154,9 @@ const ManageClasses = () => {
                           </td>
                           <td>
                             <h1 className="text-sm">{cls?.status}</h1>
+                            {cls?.Feedback && (
+                              <button className="text-red-500">Feedback</button>
+                            )}
                           </td>
                           <td className="flex justify-start items-center gap-2">
                             <button
@@ -140,7 +168,7 @@ const ManageClasses = () => {
                             </button>
                             <button
                               onClick={() => handleclassstatusapprove(cls._id)}
-                              disabled={cls?.status == "Pending" && true}
+                              disabled={cls?.status !== "Pending" && true}
                               className="px-5 py-2 disabled:opacity-30 bg-primary text-white border rounded-md"
                             >
                               Approve
@@ -161,21 +189,23 @@ const ManageClasses = () => {
         <form method="dialog" className="modal-box">
           <h3 className="font-bold text-lg">Give Feedback</h3>
           <h1 className="text-sm font-Raleway">{modaldata?.ClassName}</h1>
-          <form>
+          <form onClick={handleSubmit(handlegivefeedback)}>
             <textarea
-              placeholder={
-                modaldata.Feedback
-                  ? modaldata.Feedback
-                  : "Give feedback about this class"
-              }
+              {...register("Feedback", { required: true })}
+              placeholder="Give feedback about this class"
               className="border outline-none p-5 text-sm w-full mt-5 rounded-md"
               name="Feedback"
               id="feedback"
               cols="30"
-              rows="10"
+              rows="5"
             ></textarea>
+            {errors.Feedback?.type === "required" && (
+              <p className="my-2 text-xs text-red-500" role="alert">
+                Feedback is required
+              </p>
+            )}
             <input
-              className="px-5 py-2 disabled:opacity-30 bg-primary text-white border rounded-md hover:bg-primaryHover"
+              className="px-5 py-2 mt-2 disabled:opacity-30 bg-primary text-white border rounded-md hover:bg-primaryHover"
               type="submit"
               value="Send Feedback"
             />
@@ -183,7 +213,20 @@ const ManageClasses = () => {
 
           <div className="modal-action">
             {/* if there is a button in form, it will close the modal */}
-            <button className="btn">Close</button>
+            <button
+              style={{
+                height: "auto",
+                background: "transparent",
+                borderRadius: "50%",
+                position: "absolute",
+                top: 5,
+                right: 5,
+                border: "none",
+              }}
+              className="btn text-red-500"
+            >
+              <ImCross />
+            </button>
           </div>
         </form>
       </dialog>
