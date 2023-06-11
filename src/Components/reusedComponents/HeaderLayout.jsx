@@ -62,7 +62,7 @@ const HeaderLayout = () => {
       {user && (
         <li>
           <NavLink
-            to={userpower === "admin" ? "/Dashboard/manageclasses" : userpower === "instractor" ? "/Dashboard/instractorclasses" : "/"}
+            to={userpower === "admin" ? "/Dashboard/manageclasses" : userpower === "instractor" ? "/Dashboard/instractorclasses" : "/Dashboard/myselectclass"}
             className={({ isActive }) => isActive && "text-primary"}
           >
             <button>Dashboard</button>

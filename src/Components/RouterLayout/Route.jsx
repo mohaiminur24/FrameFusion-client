@@ -67,6 +67,11 @@ const route = createBrowserRouter([
             {
                 path: "manageusers",
                 element: <AdminPrivateRoute><ManageUsers/></AdminPrivateRoute>
+            },
+            // Student all route is here
+            {
+                path: "myselectclass",
+                element: <h1>Student my selected class</h1>
             }
         ]
     },
