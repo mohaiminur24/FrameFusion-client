@@ -13,11 +13,13 @@ import ManageClasses from "../PageLayout/AdminDashboard/ManageClasses";
 import ManageUsers from "../PageLayout/AdminDashboard/ManageUsers";
 import AdminPrivateRoute from "../AuthLayout/AdminPrivateRoute";
 import Classes from "../PageLayout/AllClasses/Classes";
+import ErrorPage from "../reusedComponents/ErrorPage";
 
 const route = createBrowserRouter([
     {
         path: "/",
         element: <MainPage/>,
+        errorElement: <ErrorPage/>,
         children:[
             {
                 path:'/',
