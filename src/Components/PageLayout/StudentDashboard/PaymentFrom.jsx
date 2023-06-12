@@ -78,26 +78,32 @@ const PaymentFrom = ({ price, payclass }) => {
           payemthistroy
         );
         if (result.data.insertedId) {
-            // localstorage management\
-            const getclass = JSON.parse(localStorage.getItem(user?.email))
-            if(getclass){
-                const filter = getclass.filter(cls => cls._id !== payclass._id);
-                localStorage.setItem(user?.email,JSON.stringify(filter));
-            };
-            const updatethisclass = await axiosSecure.post(`/updateclassafterpayment?id=${payclass._id}`);
-            if(updatethisclass.data.modifiedCount){
-                Swal.fire({
-                    position: 'center',
-                    icon: 'success',
-                    title: 'Payment successfully Done',
-                    showConfirmButton: false,
-                    timer: 1500
-                  });
-                  navigate('/Dashboard/myselectclass')
+          // localstorage management\
+          const getclass = JSON.parse(localStorage.getItem(user?.email));
+          if (getclass) {
+            const filter = getclass.filter((cls) => cls._id !== payclass._id);
+            localStorage.setItem(user?.email, JSON.stringify(filter));
+          }
+          const updatethisclass = await axiosSecure.post(
+            `/updateclassafterpayment?id=${payclass._id}`
+          );
+          if (updatethisclass.data.modifiedCount) {
+            const result = await axiosSecure.patch(
+              `updatestudentinstractor?email=${payclass.instractorEmail}`
+            );
+            if (result.data.modifiedCount) {
+              Swal.fire({
+                position: "center",
+                icon: "success",
+                title: "Payment successfully Done",
+                showConfirmButton: false,
+                timer: 1500,
+              });
+              navigate("/Dashboard/myselectclass");
+              setloading(false);
             }
-
-          setloading(false);
-        };
+          }
+        }
       }
     }
   };
