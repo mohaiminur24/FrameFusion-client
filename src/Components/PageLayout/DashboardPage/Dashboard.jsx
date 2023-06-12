@@ -1,6 +1,6 @@
 import React from "react";
 import { NavLink, Outlet } from "react-router-dom";
-import { AiFillHome, AiTwotoneBank, AiTwotonePushpin } from "react-icons/ai";
+import { AiFillHome, AiOutlineHistory, AiTwotoneBank, AiTwotonePushpin } from "react-icons/ai";
 import UserRole from "../../CustomHook/UserRole";
 
 const Dashboard = () => {
@@ -31,7 +31,20 @@ const Dashboard = () => {
         <NavLink to="manageusers" className={({isActive})=> isActive && "text-primary"}><span className="flex justify-start gap-5 items-center"><AiTwotonePushpin className="text-lg"/><button>Manage User</button></span></NavLink>
       </li>
     </div>
-  )
+  );
+  const StudentNavLink = (
+    <div>
+      <li>
+        <NavLink to="/" className="flex justify-start gap-5 items-center"><AiFillHome className="text-lg" /><button>Home</button></NavLink>
+      </li>
+      <li>
+        <NavLink to="myselectclass" className={({isActive})=> isActive && "text-primary"} ><span className="flex justify-start gap-5 items-center"><AiTwotoneBank className="text-lg"/><button>Enroll Classes</button></span></NavLink>
+      </li>
+      <li>
+        <NavLink to="manageusers" className={({isActive})=> isActive && "text-primary"}><span className="flex justify-start gap-5 items-center"><AiOutlineHistory className="text-lg"/><button>Payment History</button></span></NavLink>
+      </li>
+    </div>
+  );
   return (
     <div className="drawer lg:drawer-open">
       <input id="my-drawer-2" type="checkbox" className="drawer-toggle" />
@@ -52,7 +65,7 @@ const Dashboard = () => {
             <h1 className="text-2xl font-bold">Frame <span className="text-primary">Fusion</span></h1>
             <p className="font-normal text-xs">{userpower}</p>
           </div>
-          {userpower === "admin" ? AdminNavLink : instractorNavLink}
+          {userpower === "admin" ? AdminNavLink : userpower === 'instractor' ? instractorNavLink : StudentNavLink}
         </ul>
       </div>
     </div>

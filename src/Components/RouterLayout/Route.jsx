@@ -14,6 +14,7 @@ import ManageUsers from "../PageLayout/AdminDashboard/ManageUsers";
 import AdminPrivateRoute from "../AuthLayout/AdminPrivateRoute";
 import Classes from "../PageLayout/AllClasses/Classes";
 import ErrorPage from "../reusedComponents/ErrorPage";
+import EnrollClasses from "../PageLayout/StudentDashboard/EnrollClasses";
 
 const route = createBrowserRouter([
     {
@@ -73,7 +74,7 @@ const route = createBrowserRouter([
             // Student all route is here
             {
                 path: "myselectclass",
-                element: <h1>Student my selected class</h1>
+                element: <EnrollClasses/>
             }
         ]
     },
