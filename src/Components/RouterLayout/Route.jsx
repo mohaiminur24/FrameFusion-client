@@ -15,6 +15,8 @@ import AdminPrivateRoute from "../AuthLayout/AdminPrivateRoute";
 import Classes from "../PageLayout/AllClasses/Classes";
 import ErrorPage from "../reusedComponents/ErrorPage";
 import EnrollClasses from "../PageLayout/StudentDashboard/EnrollClasses";
+import StudentPrivateRoute from "../AuthLayout/StudentPrivateRoute";
+import PaymentPage from "../PageLayout/StudentDashboard/PaymentPage";
 
 const route = createBrowserRouter([
     {
@@ -74,7 +76,12 @@ const route = createBrowserRouter([
             // Student all route is here
             {
                 path: "myselectclass",
-                element: <EnrollClasses/>
+                element: <StudentPrivateRoute><EnrollClasses/></StudentPrivateRoute>
+            },
+            {
+                path: "payment/:id",
+                element: <StudentPrivateRoute><PaymentPage/></StudentPrivateRoute>,
+                loader: ({params})=>fetch(`http://localhost:5000/singleclassload?id=${params.id}`)
             }
         ]
     },

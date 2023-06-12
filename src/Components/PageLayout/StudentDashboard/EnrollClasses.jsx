@@ -1,6 +1,7 @@
 import React, { useContext, useEffect, useState } from "react";
 import { AuthContext } from "../../AuthLayout/AuthancationContext";
 import Swal from "sweetalert2";
+import PrimaryButton from "../../reusedComponents/PrimaryButton";
 
 const EnrollClasses = () => {
   const { user } = useContext(AuthContext);
@@ -75,9 +76,7 @@ const EnrollClasses = () => {
                         >
                           Delete
                         </button>
-                        <button className="px-4 py-2 bg-primary rounded-md shadow-md text-white hover:bg-primaryHover">
-                          Pay
-                        </button>
+                        <PrimaryButton text="Pay" direction={`/Dashboard/payment/${clss._id}`}/>
                       </th>
                     </tr>
                   </>
