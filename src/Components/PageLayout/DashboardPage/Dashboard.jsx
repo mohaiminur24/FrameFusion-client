@@ -41,7 +41,7 @@ const Dashboard = () => {
         <NavLink to="myselectclass" className={({isActive})=> isActive && "text-primary"} ><span className="flex justify-start gap-5 items-center"><AiTwotoneBank className="text-lg"/><button>Enroll Classes</button></span></NavLink>
       </li>
       <li>
-        <NavLink to="manageusers" className={({isActive})=> isActive && "text-primary"}><span className="flex justify-start gap-5 items-center"><AiOutlineHistory className="text-lg"/><button>Payment History</button></span></NavLink>
+        <NavLink to="paymenthistory" className={({isActive})=> isActive && "text-primary"}><span className="flex justify-start gap-5 items-center"><AiOutlineHistory className="text-lg"/><button>Payment History</button></span></NavLink>
       </li>
     </div>
   );

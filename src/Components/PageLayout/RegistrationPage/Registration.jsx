@@ -83,7 +83,7 @@ const Registration = () => {
         displayName: data.name,
         photoURL: data.photo,
       }).then(() => {
-        const newUser = { name: data.name, email: data.email, photo: data.photo, phone: data.phone,address: data.address, gender: data.Gender, role: "student" };
+        const newUser = { name: data.name, email: data.email, photo: data.photo, phone: data.phone,address: data.address, gender: data.Gender, role: "student", student:0 };
         fetch("http://localhost:5000/createnewuser", {
           method: "POST",
           headers: {

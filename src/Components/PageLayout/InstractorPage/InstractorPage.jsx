@@ -39,7 +39,7 @@ const InstractorPage = () => {
                     {instractor.address}
                   </p>
                 </div>
-                <SecondaryButton text="View Classes" />
+                <SecondaryButton text="View Classes" direction='/allclasses' />
               </div>
             );
           })}

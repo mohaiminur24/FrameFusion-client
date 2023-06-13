@@ -17,6 +17,7 @@ import ErrorPage from "../reusedComponents/ErrorPage";
 import EnrollClasses from "../PageLayout/StudentDashboard/EnrollClasses";
 import StudentPrivateRoute from "../AuthLayout/StudentPrivateRoute";
 import PaymentPage from "../PageLayout/StudentDashboard/PaymentPage";
+import Paymenthistroy from "../PageLayout/StudentDashboard/Paymenthistroy";
 
 const route = createBrowserRouter([
     {
@@ -82,6 +83,10 @@ const route = createBrowserRouter([
                 path: "payment/:id",
                 element: <StudentPrivateRoute><PaymentPage/></StudentPrivateRoute>,
                 loader: ({params})=>fetch(`http://localhost:5000/singleclassload?id=${params.id}`)
+            },
+            {
+                path: 'paymenthistory',
+                element: <StudentPrivateRoute><Paymenthistroy/></StudentPrivateRoute>
             }
         ]
     },
