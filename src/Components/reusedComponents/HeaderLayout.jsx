@@ -1,14 +1,21 @@
-import React, { useContext } from "react";
+import React, { useContext, useState } from "react";
 import { NavLink } from "react-router-dom";
 import PrimaryButton from "./PrimaryButton";
 import { AuthContext } from "../AuthLayout/AuthancationContext";
 import SecondaryButton from "./SecondaryButton";
 import Swal from "sweetalert2";
 import UserRole from "../CustomHook/UserRole";
+import { MdOutlineLightMode, MdOutlineNightlight } from "react-icons/md";
+import ThemeChange from "../CustomHook/ThemeChange";
 
 const HeaderLayout = () => {
   const { user, Logoutuser } = useContext(AuthContext);
   const [userpower] = UserRole();
+  const [themtoggle, setthemetoggle] = useState(false);
+
+  const handletheme =(theme)=>{
+      ThemeChange(theme);
+  };
   
   //handlelogout function is here
   const handleLogoutuser = () => {
@@ -88,6 +95,19 @@ const HeaderLayout = () => {
         ) : (
           <PrimaryButton text="Login" direction="/loginPage" />
         )}
+      </li>
+      <li>
+        {
+          themtoggle ? <button onClick={()=>{
+            setthemetoggle(false);
+            handletheme('light');
+          }} className="p-3 bg-gray-100 rounded-full"><MdOutlineLightMode/></button> : <button onClick={()=>{
+            setthemetoggle(true);
+            handletheme('dark')
+          }} className="p-3 bg-gray-100 rounded-full"><MdOutlineNightlight/></button>
+        }
+          
+          
       </li>
     </>
   );
