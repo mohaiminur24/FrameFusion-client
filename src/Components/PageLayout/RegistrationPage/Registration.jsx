@@ -84,7 +84,7 @@ const Registration = () => {
         photoURL: data.photo,
       }).then(() => {
         const newUser = { name: data.name, email: data.email, photo: data.photo, phone: data.phone,address: data.address, gender: data.Gender, role: "student", student:0 };
-        fetch("http://localhost:5000/createnewuser", {
+        fetch("https://framefusion.vercel.app/createnewuser", {
           method: "POST",
           headers: {
             "content-type": "application/json",

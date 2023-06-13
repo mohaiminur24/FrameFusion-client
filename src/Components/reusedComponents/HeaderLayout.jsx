@@ -9,7 +9,7 @@ import UserRole from "../CustomHook/UserRole";
 const HeaderLayout = () => {
   const { user, Logoutuser } = useContext(AuthContext);
   const [userpower] = UserRole();
-
+  
   //handlelogout function is here
   const handleLogoutuser = () => {
     Logoutuser()

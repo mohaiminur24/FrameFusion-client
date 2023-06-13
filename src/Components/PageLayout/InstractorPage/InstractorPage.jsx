@@ -8,7 +8,7 @@ const InstractorPage = () => {
   const [instractors, setInstractors] = useState(null);
   const [loadininstractor, setLoadinInstractor] = useState(true);
   useEffect(() => {
-    fetch("http://localhost:5000/allinstractor")
+    fetch("https://framefusion.vercel.app/allinstractor")
       .then((res) => res.json())
       .then((data) => {
         setInstractors(data);

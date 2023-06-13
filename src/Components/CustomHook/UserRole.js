@@ -10,6 +10,7 @@ const UserRole =  () => {
     const result =await axiosSecure(`/loadcurrentuser?email=${user?.email}`);
     setUserPower(result.data.role);
   }
+
   useEffect(()=>{
     fetchingrole();
   },[user])

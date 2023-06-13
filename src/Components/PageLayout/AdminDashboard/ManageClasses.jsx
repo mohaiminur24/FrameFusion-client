@@ -5,6 +5,7 @@ import ContainerLayout from "../../reusedComponents/ContainerLayout";
 import Swal from "sweetalert2";
 import AxiosFetch from "../../CustomHook/AxiosFetch";
 import { ImCross } from "react-icons/im";
+import { Fade } from "react-awesome-reveal";
 
 const ManageClasses = () => {
   const [refetch, classes] = LoadAllClasses();
@@ -121,7 +122,7 @@ const ManageClasses = () => {
                             </div>
                           </td>
                           <td>
-                            <h1 className="font-bold">{cls?.ClassName}</h1>
+                            <Fade delay={1e3} cascade damping={1e-1} className="font-bold">{cls?.ClassName}</Fade>
                             <h2 className="text-xs opacity-50">
                               Email : <span>{cls.instractorEmail}</span>
                             </h2>

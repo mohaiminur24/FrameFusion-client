@@ -56,7 +56,7 @@ const AuthancationContext = ({ children }) => {
     const unsuscribe = onAuthStateChanged(auth, (currentUser) => {
       setUser(currentUser);
       if (currentUser) {
-        fetch("http://localhost:5000/jwt", {
+        fetch("https://framefusion.vercel.app/jwt", {
           method: "POST",
           headers: {
             "content-type": "application/json",

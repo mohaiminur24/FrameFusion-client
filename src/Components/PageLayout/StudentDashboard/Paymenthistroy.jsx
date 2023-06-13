@@ -1,17 +1,23 @@
 import React, { useContext, useEffect, useState } from "react";
 import AxiosFetch from "../../CustomHook/AxiosFetch";
 import { AuthContext } from "../../AuthLayout/AuthancationContext";
+import LoadingPage from "../../reusedComponents/LoadingPage";
 
 const Paymenthistroy = () => {
   const [history, setHistory] = useState(null);
   const { user } = useContext(AuthContext);
+  const [loadpage, setLoadpage] = useState(true);
   const axiosSecure = AxiosFetch();
   useEffect(() => {
     axiosSecure(`/userpaymenthistory?email=${user?.email}`).then((res) =>
-      setHistory(res.data)
+      setHistory(res.data),
+      setLoadpage(false)
     );
   }, [user]);
-  console.log(history);
+  
+  if(loadpage){
+    return <LoadingPage/>
+  }
   return (
     <div>
       <div className="overflow-x-auto">

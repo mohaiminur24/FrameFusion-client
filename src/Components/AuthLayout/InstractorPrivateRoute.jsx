@@ -4,6 +4,7 @@ import { useNavigate } from 'react-router-dom';
 const InstractorPrivateRoute = ({children}) => {
     const [userpower] = UserRole();
     const navigate = useNavigate();
+    
     if(!userpower){
         return;
     };

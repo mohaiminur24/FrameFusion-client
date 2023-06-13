@@ -45,7 +45,6 @@ const route = createBrowserRouter([
                 path: "/allclasses",
                 element: <Classes/>
             }
-            
         ]
     },
     {
@@ -82,7 +81,7 @@ const route = createBrowserRouter([
             {
                 path: "payment/:id",
                 element: <StudentPrivateRoute><PaymentPage/></StudentPrivateRoute>,
-                loader: ({params})=>fetch(`http://localhost:5000/singleclassload?id=${params.id}`)
+                loader: ({params})=>fetch(`https://framefusion.vercel.app/singleclassload?id=${params.id}`)
             },
             {
                 path: 'paymenthistory',

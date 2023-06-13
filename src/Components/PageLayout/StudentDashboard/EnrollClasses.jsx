@@ -2,10 +2,17 @@ import React, { useContext, useEffect, useState } from "react";
 import { AuthContext } from "../../AuthLayout/AuthancationContext";
 import Swal from "sweetalert2";
 import PrimaryButton from "../../reusedComponents/PrimaryButton";
+import LoadingPage from "../../reusedComponents/LoadingPage";
+import { motion } from "framer-motion";
+import { Fade, Bounce } from "react-awesome-reveal";
 
 const EnrollClasses = () => {
-  const { user } = useContext(AuthContext);
+  const { user, loading } = useContext(AuthContext);
   const [saveclass, setSaveClass] = useState(null);
+
+  if (loading) {
+    return <LoadingPage />;
+  }
   useEffect(() => {
     const saveclass = JSON.parse(localStorage.getItem(user?.email));
     setSaveClass(saveclass);
@@ -60,7 +67,7 @@ const EnrollClasses = () => {
                             </div>
                           </div>
                           <div>
-                            <div className="font-bold">{clss.ClassName}</div>
+                            <Fade className="font-bold" delay={1e3} cascade damping={1e-1}>{clss.ClassName}</Fade>
                           </div>
                         </div>
                       </td>
@@ -68,15 +75,20 @@ const EnrollClasses = () => {
                         <h1>{clss.InstractorName}</h1>
                         <h1>{clss.instractorEmail}</h1>
                       </td>
-                      <td>${clss.price}</td>
+                      <Fade><td>${clss.price}</td></Fade>
                       <th>
-                        <button
+                        <motion.button
+                          whileHover={{ scale: 1.1 }}
+                          whileTap={{ scale: 0.9 }}
                           onClick={() => managedeleteclass(clss._id)}
                           className="px-4 py-2 bg-red-500 rounded-md shadow-md text-white mr-5 hover:bg-red-700"
                         >
                           Delete
-                        </button>
-                        <PrimaryButton text="Pay" direction={`/Dashboard/payment/${clss._id}`}/>
+                        </motion.button>
+                        <PrimaryButton
+                          text="Pay"
+                          direction={`/Dashboard/payment/${clss._id}`}
+                        />
                       </th>
                     </tr>
                   </>

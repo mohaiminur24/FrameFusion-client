@@ -22,7 +22,7 @@ const SocialLogin = () => {
           gender: "",
           role: "student",
         };
-        fetch("http://localhost:5000/createnewuserbygoogle", {
+        fetch("https://framefusion.vercel.app/createnewuserbygoogle", {
           method: "POST",
           headers: {
             "content-type": "application/json",

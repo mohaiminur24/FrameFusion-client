@@ -14,8 +14,6 @@ const PopularInstructors = () => {
       setPopularInstractor(res.data)
     );
   }, []);
-
-  console.log(popularInstractor);
   return (
     <div>
       <SectionTitle
@@ -40,7 +38,7 @@ const PopularInstructors = () => {
                 popularInstractor && popularInstractor.map((ins,index)=>{
                     return (
                         <>
-                        <SwiperSlide>
+                        <SwiperSlide key={index}>
                           <div className="p-5 border rounded-md shadow-sm grid grid-cols-1 md:grid-cols-2 gap-5">
                             <img className="w-full h-52 rounded-md" src={ins.photo} alt="" />
                             <div className="w-full font-Raleway">
