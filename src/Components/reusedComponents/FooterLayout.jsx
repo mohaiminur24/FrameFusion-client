@@ -5,7 +5,7 @@ const FooterLayout = () => {
     <div>
       <footer className="footer p-10 bg-base-200 text-base-content">
         <div>
-          <img className="w-52" src="https://novastep.life/wp-content/uploads/2019/02/Fusion-Frame-Logo-CMYK.png" alt="" />
+          <img className="w-52" src="https://i.ibb.co/Fbgbgnn/944d51-b7716e49d7d04f2e84372ce8e98dd24d-mv2.png" alt="" />
           <p>
             Frame Fusion Ltd.
             <br />
