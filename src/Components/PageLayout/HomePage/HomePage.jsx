@@ -5,6 +5,7 @@ import { Container } from "postcss";
 import PopularClass from "./Layout/PopularClass";
 import PopularInstructors from "./Layout/PopularInstructors";
 import DaynamicTitle from "../../reusedComponents/DaynamicTitle";
+import Contactus from "./Layout/Contactus";
 
 const HomePage = () => {
   return (
@@ -21,6 +22,10 @@ const HomePage = () => {
       {/* Popular Instructors section from here */}
       <ContainerLayout>
         <PopularInstructors/>
+      </ContainerLayout>
+      {/* contact us section from here */}
+      <ContainerLayout>
+        <Contactus/>
       </ContainerLayout>
     </div>
   );
