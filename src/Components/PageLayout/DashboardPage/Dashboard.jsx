@@ -10,6 +10,7 @@ import UserRole from "../../CustomHook/UserRole";
 import { motion } from "framer-motion";
 import { FaChalkboardTeacher } from "react-icons/fa";
 import { SiGoogleclassroom } from "react-icons/si";
+import { BiMenu } from "react-icons/bi";
 
 const Dashboard = () => {
   const [userpower] = UserRole();
@@ -128,13 +129,13 @@ const Dashboard = () => {
     <div className="drawer lg:drawer-open">
       <input id="my-drawer-2" type="checkbox" className="drawer-toggle" />
       <div className="drawer-content flex flex-col items-center justify-center">
-        <Outlet />
         <label
           htmlFor="my-drawer-2"
-          className="btn btn-primary drawer-button lg:hidden"
+          className=" p-3 bg-primary text-white rounded-md shadow-md lg:hidden"
         >
-          Open drawer
+          <BiMenu className="text-2xl"/>
         </label>
+        <Outlet />
       </div>
       <div className="drawer-side">
         <label htmlFor="my-drawer-2" className="drawer-overlay"></label>

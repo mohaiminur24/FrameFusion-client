@@ -12,7 +12,7 @@ const PopularClass = () => {
     return (
         <div>
             <SectionTitle title="Popular Classes" description="Mastering the Art of Composition: Learn how to create visually captivating photographs through effective composition techniques and storytelling elements" />
-            <div className='grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-6 gap-5'>
+            <div className='grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5'>
                 {
                     popularclasses && popularclasses.map((cls,index)=><PopularClassLayout key={index} singlecls={cls}/>)
                 }
