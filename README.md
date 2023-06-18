@@ -5,6 +5,10 @@
 # Frame Fusion
 This is a Photograph School website. Student can enroll class and learn photography with their favourite instractor. This website has a beautiful Admin panel for Admin instractor and student and data is much secure for every person.
 
+Admin info:
+Email : admin@gmail.com
+Password: Muktar24@
+
 
 
 
