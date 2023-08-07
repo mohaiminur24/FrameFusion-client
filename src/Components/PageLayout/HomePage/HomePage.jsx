@@ -7,6 +7,7 @@ import PopularInstructors from "./Layout/PopularInstructors";
 import DaynamicTitle from "../../reusedComponents/DaynamicTitle";
 import Contactus from "./Layout/Contactus";
 import Getintouch from "./Layout/Getintouch";
+import BannerSection from "./Layout/BannerSection";
 
 const HomePage = () => {
   return (
@@ -16,6 +17,10 @@ const HomePage = () => {
       <ContainerLayout>
         <SliderLayout />
       </ContainerLayout>
+      {/* Bannersection from here */}
+      <ContainerLayout>
+        <BannerSection/>
+      </ContainerLayout>
       {/* Popular class section from here */}
       <ContainerLayout>
         <PopularClass />
@@ -24,13 +29,13 @@ const HomePage = () => {
       <ContainerLayout>
         <PopularInstructors/>
       </ContainerLayout>
-      {/* get in touch section from here */}
-      <ContainerLayout>
-        <Getintouch/>
-      </ContainerLayout>
       {/* contact us section from here */}
       <ContainerLayout>
         <Contactus/>
+      </ContainerLayout>
+      {/* get in touch section from here */}
+      <ContainerLayout>
+        <Getintouch/>
       </ContainerLayout>
     </div>
   );
