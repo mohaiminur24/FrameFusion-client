@@ -8,6 +8,7 @@ import DaynamicTitle from "../../reusedComponents/DaynamicTitle";
 import Contactus from "./Layout/Contactus";
 import Getintouch from "./Layout/Getintouch";
 import BannerSection from "./Layout/BannerSection";
+import SubBanner from "./Layout/SubBanner";
 
 const HomePage = () => {
   return (
@@ -25,6 +26,8 @@ const HomePage = () => {
       <ContainerLayout>
         <PopularClass />
       </ContainerLayout>
+      {/* subbanner section from here */}
+      <SubBanner/>
       {/* Popular Instructors section from here */}
       <ContainerLayout>
         <PopularInstructors/>

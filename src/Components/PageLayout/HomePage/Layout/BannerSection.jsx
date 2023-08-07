@@ -6,7 +6,7 @@ const BannerSection = () => {
       <div className="border-r p-5">
         <h1 className="md:text-5xl font-Cinzel">FOR THE <br /> SIMPLY JOYFUL <br /> MOMENTS</h1>
         <p className="text-sm mt-5 font-Inter">In a professional context it often happens that private or corporate clients corder a publication to be made and presented with the actual content still not being ready. Think of a news blog that's filled with content.</p>
-        <button className="px-5 py-2 bg-slate-600 mt-3 rounded-sm shadow-sm text-white"><a href="https://www.linkedin.com/in/mohaiminur-mernstack/" target="black">Visit us</a></button>
+        <button className="px-10 py-3 bg-slate-600 mt-3 rounded-sm shadow-sm text-white"><a href="https://www.linkedin.com/in/mohaiminur-mernstack/" target="black">Visit us</a></button>
       </div>
       <img
         className="w-4/5 mx-auto rounded-md shadow-sm"
