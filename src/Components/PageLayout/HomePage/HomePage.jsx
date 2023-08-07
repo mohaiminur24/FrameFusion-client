@@ -9,6 +9,7 @@ import Contactus from "./Layout/Contactus";
 import Getintouch from "./Layout/Getintouch";
 import BannerSection from "./Layout/BannerSection";
 import SubBanner from "./Layout/SubBanner";
+import SubSlider from "./Layout/SubSlider";
 
 const HomePage = () => {
   return (
@@ -32,6 +33,8 @@ const HomePage = () => {
       <ContainerLayout>
         <PopularInstructors/>
       </ContainerLayout>
+      {/* subslider from here */}
+      <SubSlider/>
       {/* contact us section from here */}
       <ContainerLayout>
         <Contactus/>
